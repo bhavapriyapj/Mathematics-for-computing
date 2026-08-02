@@ -1,0 +1,639 @@
+\documentclass[10pt]{beamer}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% Modern & professional theme
+\usetheme{metropolis}
+
+% Customizing colors for a polished corporate look
+\definecolor{primaryNavy}{RGB}{10, 34, 64}
+\definecolor{accentGold}{RGB}{212, 160, 23}
+
+\setbeamercolor{palette primary}{fg=white, bg=primaryNavy}
+\setbeamercolor{progress bar}{fg=accentGold}
+\setbeamercolor{title separator}{fg=accentGold}
+
+% Absolute Top-Left College Emblem (Reduced Size)
+\titlegraphic{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=north west, xshift=0.5cm, yshift=-0.5cm] at (current page.north west) {
+      \includegraphics[height=0.8cm]{emblem.png} % Reduced height to 0.8cm
+    };
+  \end{tikzpicture}%
+}
+
+% Presentation Details
+\title{MATHEMATICS FOR COMPUTING}
+\subtitle{Assignment - 1}
+\author{BHAVAPRIYA P J}
+\institute{Department of computer science}
+\date{\today}
+
+\begin{document}
+
+% Title Page Only
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+
+
+
+% --- Header & Footer Customization ---
+
+% --- Header & Footer Configuration for All Slides ---
+
+% --- Header & Footer Configuration for All Slides ---
+
+% Display header on every slide
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.5ex, dp=1.125ex]{palette primary}%
+    \hspace*{2ex}\insertsectionhead \hfill \insertsubsectionhead\hspace*{2ex}%
+  \end{beamercolorbox}%
+}
+
+% Display footer without name on every slide
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=2.5ex, dp=1.125ex, leftskip=1cm, rightskip=1cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}%
+    \insertshortinstitute
+    \hfill
+    \insertshorttitle
+    \hfill
+    \insertframenumber{} / \inserttotalframenumber
+  \end{beamercolorbox}%
+  \vspace*{2pt}%
+}
+
+% Force Beamer to show headline and footline on plain frames (like title page)
+\makeatletter
+\setbeamertemplate{title page}[default]
+\makeatother
+
+
+
+
+
+
+
+% Slide 2: Agenda / Table of Contents
+\begin{frame}{Contents}
+    \tableofcontents
+\end{frame}
+
+% Section definitions for Set Theory
+\section{Sets \& Operations}
+% Slide 3: Definition of a Set & Set-Builder Form
+\begin{frame}{Set Theory}{Definition \& Representation}
+
+    \begin{block}{Definition}
+        A \textbf{set} is a well-defined collection of distinct objects. The objects that belong to a set are called its \textit{elements} or \textit{members}.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Set-Builder Notation}
+        Instead of listing every element, a set can be described by stating the properties that its members must satisfy:
+        \[
+            S = \{ x \mid P(x) \} \quad \text{or} \quad S = \{ x : P(x) \}
+        \]
+        \small{Read as: "The set of all $x$ such that property $P(x)$ holds true."}
+    \end{block}
+
+\end{frame}
+
+
+% Slide 4: Examples of Sets
+\begin{frame}{Set Theory}{Examples}
+
+    \begin{exampleblock}{Roster vs. Set-Builder Form}
+        \begin{itemize}
+            \item \textbf{Roster (Tabular) Form:} Elements are explicitly listed inside curly braces.
+            \[
+                A = \{2, 4, 6, 8, 10\}
+            \]
+            \item \textbf{Set-Builder Form:} Described by a condition.
+            \[
+                A = \{ x \in \mathbb{Z}^+ \mid x \text{ is even and } 2 \le x \le 10 \}
+            \]
+        \end{itemize}
+    \end{exampleblock}
+
+    \vspace{0.2cm}
+
+    \begin{exampleblock}{Common Mathematical Sets}
+        \begin{itemize}
+            \item $\mathbb{N} = \{1, 2, 3, \dots\}$ \hfill \textit{(Set of Natural Numbers)}
+            \item $\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}$ \hfill \textit{(Set of Integers)}
+            \item $\mathbb{Q} = \left\{ \frac{p}{q} \;\middle|\; p, q \in \mathbb{Z}, \, q \neq 0 \right\}$ \hfill \textit{(Set of Rational Numbers)}
+        \end{itemize}
+    \end{exampleblock}
+
+\end{frame}
+
+
+\section{Types of Sets}
+
+
+% Slide 5: Null Set
+\begin{frame}{Types of Sets}{Null (Empty) Set ($\emptyset$)}
+
+    \Large \textbf{1. Null (Empty) Set ($\emptyset$)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A set containing no elements, with cardinality $|\emptyset| = 0$.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ A = \{\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ A = \{ x \in \mathbb{R} \mid x^2 + 1 = 0 \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Set of invalid predictions with confidence score greater than 1:
+        \[ S = \{ p \in \text{Predictions} \mid \text{Confidence}(p) > 1.0 \} = \emptyset \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 6: Singleton Set
+\begin{frame}{Types of Sets}{Singleton Set}
+
+    \Large \textbf{2. Singleton Set} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A set containing exactly one element, with cardinality $|A| = 1$.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ B = \{0\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ B = \{ x \in \mathbb{Z} \mid x + 5 = 5 \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Target class assigned to a single image in multi-class classification:
+        \[ Y = \{ y \in \text{Classes} \mid y = \text{"Heart Murmur"} \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 7: Finite Set
+\begin{frame}{Types of Sets}{Finite Set}
+
+    \Large \textbf{3. Finite Set} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A set with a countable, limited number of elements ($|A| < \infty$).
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ C = \{2, 4, 6, 8, 10\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ C = \{ x \in \mathbb{Z}^+ \mid x \text{ is even } \land x \le 10 \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Set of hyperparameter learning rates evaluated during grid search:
+        \[ L = \{ \eta \in \mathbb{R} \mid \eta = 10^{-k}, k \in \{1, 2, 3, 4\} \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 8: Infinite Set
+\begin{frame}{Types of Sets}{Infinite Set}
+
+    \Large \textbf{4. Infinite Set} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A set with unlimited elements whose counting process does not end ($|A| = \infty$).
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ D = \{1, 2, 3, 4, \dots\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ D = \{ x \in \mathbb{R} \mid 0 \le x \le 1 \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Continuous weight matrix parameter space of a dense layer:
+        \[ W = \{ w \in \mathbb{R}^{d_{in} \times d_{out}} \mid -1.0 \le w \le 1.0 \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 9: Countable Set
+\begin{frame}{Types of Sets}{Countable Set}
+
+    \Large \textbf{5. Countable Set} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A set that can be placed in a one-to-one correspondence with natural numbers $\mathbb{N}$.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ E = \{1, 3, 5, 7, \dots\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ E = \{ x \in \mathbb{N} \mid x = 2k - 1, k \in \mathbb{N} \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Sequence of training epoch iterations in model optimization:
+        \[ T = \{ e \in \mathbb{N} \mid 1 \le e \le \text{MaxEpochs} \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 10: Subset
+\begin{frame}{Types of Sets}{Subset}
+
+    \Large \textbf{6. Subset ($A \subseteq B$)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        Set $A$ is a subset of $B$ if every element in $A$ is also contained in $B$.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ A = \{1, 2\}, \quad B = \{1, 2, 3, 4\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ A = \{ x \in B \mid P(x) \text{ is true} \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Validation split taken directly from full training dataset:
+        \[ D_{\text{val}} = \{ d \in D_{\text{total}} \mid \text{IsValidation}(d) = \text{true} \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 11: Superset
+\begin{frame}{Types of Sets}{Superset}
+
+    \Large \textbf{7. Superset ($B \supseteq A$)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        Set $B$ is a superset of $A$ if $B$ contains all elements of $A$ along with additional elements.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ B = \{1, 2, 3, 4, 5\}, \quad A = \{2, 4\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ B = \{ x \mid x \in A \lor x \in A^c \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Complete dataset holding all cross-validation partitions combined:
+        \[ D_{\text{total}} = \{ x \mid x \in D_{\text{train}} \cup D_{\text{val}} \cup D_{\text{test}} \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 12: Equal Sets
+\begin{frame}{Types of Sets}{Equal Sets}
+
+    \Large \textbf{8. Equal Sets ($A = B$)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        Two sets $A$ and $B$ are equal if $A \subseteq B$ and $B \subseteq A$ (same elements).
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ A = \{1, 2, 3\}, \quad B = \{3, 2, 1\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ A = \{ x \in \mathbb{Z} \mid 1 \le x \le 3 \}, \, B = \{ y \in \mathbb{Z} \mid y^2 \in \{1, 4, 9\} \cap \mathbb{Z}^+ \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Identical feature sets derived from two duplicate raw data columns:
+        \[ F_1 = \{x \in \text{Data} \mid \text{ID}(x)\} = F_2 \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 13: Equivalent Sets
+\begin{frame}{Types of Sets}{Equivalent Sets}
+
+    \Large \textbf{9. Equivalent Sets ($A \sim B$)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        Two sets $A$ and $B$ are equivalent if they have the same cardinality ($|A| = |B|$).
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form}
+                \[ A = \{a, b, c\}, \quad B = \{1, 2, 3\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ A = \{ x \in \mathbb{N} \mid x \le 3 \}, \quad B = \{ y \in \mathbb{Z}^- \mid y \ge -3 \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Balanced binary classification dataset with equal positive and negative samples:
+        \[ |D_{\text{pos}}| = |D_{\text{neg}}| = 500 \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 14: Power Set
+\begin{frame}{Types of Sets}{Power Set}
+
+    \Large \textbf{10. Power Set ($\mathcal{P}(S)$)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        The set of all subsets of $S$. Its size is $|\mathcal{P}(S)| = 2^{|S|}$.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster Form ($S=\{1,2\}$)}
+                \[ \mathcal{P}(S) = \{\emptyset, \{1\}, \{2\}, \{1,2\}\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ \mathcal{P}(S) = \{ A \mid A \subseteq S \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small All possible feature combinations evaluated during exhaustive Feature Selection:
+        \[ \mathcal{P}(F) = \{ A \mid A \subseteq \{\text{Age}, \text{BMI}, \text{ECG}\} \} \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 15: Partially Ordered Set (Poset)
+\begin{frame}{Types of Sets}{Partially Ordered Set (Poset)}
+
+    \Large \textbf{11. Partially Ordered Set (Poset)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A set $S$ paired with a partial order relation $\le$ that satisfies reflexivity, antisymmetry, and transitivity: $(S, \le)$.
+    \end{block}
+
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Roster / Subset Relation}
+                \[ S = \{1, 2, 4\}, \quad a \le b \iff a \text{ divides } b \]
+                \[ R = \{(1,1), (2,2), (4,4), (1,2), (1,4), (2,4)\} \]
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Set-Builder Form}
+                \[ P = \{ (x, y) \in S \times S \mid x \le y \} \]
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \begin{exampleblock}{AI / Data Science Example}
+        \small Hierarchy of sub-sampling layers or directed acyclic dependencies in neural networks:
+        \[ (\mathcal{L}, \preceq) \quad \text{where } L_i \preceq L_j \text{ if Layer } L_i \text{ feeds into } L_j \]
+    \end{exampleblock}
+
+\end{frame}
+
+
+% Slide 16: Hasse Diagram
+% Note: Ensure \usepackage{tikz} is included in your preamble.
+
+\begin{frame}{Types of Sets}{Hasse Diagram}
+
+    \textbf{\Large 12. Hasse Diagram}
+    \vspace{0.2cm}
+
+    \begin{block}{Definition}
+        A visual representation of a finite partially ordered set (poset) that eliminates redundant reflexive self-loops and transitive edges.
+    \end{block}
+
+    \begin{columns}[c]
+        \begin{column}{0.50\textwidth}
+            \begin{block}{Core Properties}
+                \begin{itemize}
+                    \item Directed upward (larger elements higher).
+                    \item Omits self-loops ($x \le x$).
+                    \item Omits transitive edges ($a \le b \land b \le c \implies a \le c$).
+                \end{itemize}
+            \end{block}
+        \end{column}
+
+        \begin{column}{0.46\textwidth}
+            \begin{block}{Example Poset $D_6$}
+                \centering
+                $D_6 = \{1, 2, 3, 6\}$ under divisibility ($a \mid b$)
+                
+                \vspace{0.2cm}
+                \begin{tikzpicture}[scale=0.7, every node/.style={circle, draw=black, fill=blue!10, inner sep=1.5pt, minimum size=5mm, font=\small}]
+                    \node (1) at (0, 0) {1};
+                    \node (2) at (-1, 1) {2};
+                    \node (3) at (1, 1) {3};
+                    \node (6) at (0, 2) {6};
+
+                    \draw[thick] (1) -- (2);
+                    \draw[thick] (1) -- (3);
+                    \draw[thick] (2) -- (6);
+                    \draw[thick] (3) -- (6);
+                \end{tikzpicture}
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    
+\end{frame}
+
+
+
+\section{Inclusion-Exclusion Principle}
+
+% Slide 15: Inclusion-Exclusion Principle - Concept & Formula
+\begin{frame}{Inclusion-Exclusion Principle}{Concept \& Formulations}
+
+    \Large \textbf{Principle of Inclusion-Exclusion (PIE)} \normalsize
+    \vspace{0.3cm}
+
+    \begin{block}{Definition}
+        A counting technique to compute the number of elements in the union of multiple sets without overcounting elements in their intersections.
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \begin{block}{Two-Set Formula}
+        For any two finite sets $A$ and $B$:
+        \[
+            |A \cup B| = |A| + |B| - |A \cap B|
+        \]
+    \end{block}
+
+    \begin{block}{Three-Set Formula}
+        For any three finite sets $A$, $B$, and $C$:
+        \[
+            |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| + |A \cap B \cap C|
+        \]
+    \end{block}
+
+\end{frame}
+
+
+
+
+
+
+% Slide 16: Inclusion-Exclusion Principle - Data Science Example
+\begin{frame}{Inclusion-Exclusion Principle}{AI / Data Science Example}
+
+    \Large \textbf{Example: Data Preprocessing \& Cleaning} \normalsize
+    \vspace{0.3cm}
+
+    \begin{exampleblock}{Problem Scenario}
+        A audio dataset of $1000$ recordings is checked for noise artifacts:
+        \begin{itemize}
+            \item Set $A$ (High Noise): $|A| = 300$
+            \item Set $B$ (Clipping Artifacts): $|B| = 200$
+            \item Set $A \cap B$ (Both High Noise and Clipping): $|A \cap B| = 80$
+        \end{itemize}
+    \end{exampleblock}
+
+    \vspace{0.2cm}
+
+    \begin{block}{Calculation}
+        Total unique corrupted audio files ($|A \cup B|$):
+        \[
+            |A \cup B| = |A| + |B| - |A \cap B| = 300 + 200 - 80 = 420
+        \]
+        Total clean audio files remaining = $1000 - 420 = 580$.
+    \end{block}
+
+\end{frame}
+
+%slide 17
+
+\section{Examples of Set-Builder Form}
+
+\begin{enumerate}
+    \item \textbf{Natural numbers less than 8:}
+    \[ A = \{ x \in \mathbb{N} \mid x < 8 \} = \{ 1, 2, 3, 4, 5, 6, 7 \} \]
+
+    \item \textbf{Even numbers from 2 to 20:}
+    \[ B = \{ 2k \mid k \in \mathbb{N}, 1 \le k \le 10 \} = \{ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 \} \]
+
+    \item \textbf{Odd numbers less than 15:}
+    \[ C = \{ x \in \mathbb{N} \mid x \text{ is odd}, x < 15 \} = \{ 1, 3, 5, 7, 9, 11, 13 \} \]
+
+    \item \textbf{Prime numbers less than 7:}
+    \[ D = \{ x \in \mathbb{N} \mid x \text{ is prime}, x < 7 \} = \{ 2, 3, 5 \} \]
+
+    \item \textbf{Multiples of 4 less than 25:}
+    \[ E = \{ 4k \mid k \in \mathbb{N}, 4k < 25 \} = \{ 4, 8, 12, 16, 20, 24 \} \]
+
+    \item \textbf{Squares of odd numbers up to 7:}
+    \[ F = \{ x^2 \mid x \in \mathbb{N}, x \text{ is odd}, x \le 7 \} = \{ 1, 9, 25, 49 \} \]
+
+    \item \textbf{A set formed by adding 2 to natural numbers:}
+    \[ G = \{ x + 2 \mid x \in \mathbb{N} \} = \{ 3, 4, 5, 6, \dots \} \]
+
+    \item \textbf{Factorials up to 5!:}
+    \[ H = \{ n! \mid n \in \mathbb{N}, 1 \le n \le 5 \} = \{ 1, 2, 6, 24, 120 \} \]
+
+    \item \textbf{Set formed by $n^2 - 1$ for natural numbers:}
+    \[ I = \{ n^2 - 1 \mid n \in \mathbb{N} \} = \{ 0, 3, 8, 15, \dots \} \]
+
+    \item \textbf{Factors of 12:}
+    \[ J = \{ x \in \mathbb{N} \mid 12 \pmod x = 0 \} = \{ 1, 2, 3, 4, 6, 12 \} \]
+\end{enumerate}
+
+\end{document}
+
+\end{document}
